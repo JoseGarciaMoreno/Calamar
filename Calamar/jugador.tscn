@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://jugador.gd" type="Script" id=1]
+[ext_resource path="res://arte/Calamar_up1.png" type="Texture" id=2]
+[ext_resource path="res://arte/Calamar_up2.png" type="Texture" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "caminar",
+"speed": 3.85
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 23.0217
+
+[node name="Njugador" type="Area2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+animation = "caminar"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Position2D" type="Position2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_Njugador_body_entered"]
+[connection signal="golpe" from="." to="." method="_on_Njugador_golpe"]
